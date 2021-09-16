@@ -21,5 +21,5 @@ def dev():
 
 # ======================================
 if __name__ == '__main__':
-    print('basic REST api enabled on localhost port 8080')
+    print('Angular frontend enabled on localhost port 8080')
     app.run(debug=True, host='127.0.0.1', port=8080)
