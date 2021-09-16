@@ -1,6 +1,7 @@
 import os
 
 
+# use this function to find all 'href' and 'src' urls in index.html
 def find_all(html: str, sub: str):
     start = 0
     indexList = []
@@ -12,7 +13,7 @@ def find_all(html: str, sub: str):
         indexList.append(location)
     return indexList
 
-
+# this function adds a '?' in front off all href and src urls in index.html so that they are requested as args to root url
 def fixIndexHTMLdoc():
     staticIndex = []
     offset = 0
@@ -31,7 +32,6 @@ def fixIndexHTMLdoc():
             # print(f"already done: {index}")
         else:
             # print(f"add ? here: {index}")
-            # print(indexHTML.find(staticURLref[0],index))
             if indexHTML.find(staticURLref[0], index) != -1:
                 # fix href tags
                 indexHTML = indexHTML[0:index + 6 + offset] + "?" + indexHTML[index + 6 + offset:]
