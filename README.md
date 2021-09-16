@@ -1,7 +1,8 @@
 # Flask-Serving-Angular
-Serve angular production application from python flask backend\
-flask will serve production app in dist folder\
-This makes developement and deployment simple with the Angular frontend UI and Flask backend together in one folder
+Serve angular production application from python flask backend
+* flask will serve production app in dist folder
+* This is done by requesting javascript and css files as args to root url
+* This makes developement and deployment simple with the Angular frontend UI and Flask backend together in one folder
 
 ## build angular app
 `ng build` within app folder like normal
