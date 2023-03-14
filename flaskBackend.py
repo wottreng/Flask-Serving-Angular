@@ -19,6 +19,11 @@ def dev():
         return send_from_directory(f"{os.getcwd()}/app/dist/app", "index.html")
 
 
+@app.route("/assets/<name>", methods=['GET'])
+def assets(name):
+    return send_from_directory(f"{os.getcwd()}/app/dist/app/assets", name)
+
+
 # ======================================
 if __name__ == '__main__':
     print('Angular frontend enabled on localhost port 8080')

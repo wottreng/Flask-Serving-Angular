@@ -2,16 +2,16 @@ import os
 
 
 # use this function to find all 'href' and 'src' urls in index.html
-def find_all(html: str, sub: str):
+def find_all_substrings(html: str, substring: str) -> list:
     start = 0
     indexList = []
     while True:
-        location = html.find(sub, start)
-        # print(location)
-        start = location + 1
-        if location == -1: break
-        indexList.append(location)
-    return indexList
+        start = html.find(substring, start)
+        if start == -1:
+            return indexList
+        indexList.append(start)
+        start += len(substring)
+
 
 # this function adds a '?' in front off all href and src urls in index.html so that they are requested as args to root url
 def fixIndexHTMLdoc():
@@ -22,7 +22,7 @@ def fixIndexHTMLdoc():
         indexHTML = main.read()
     # print(indexHTML)
     for staticRef in staticURLref:
-        indexes = find_all(indexHTML, staticRef)  # find all static urls
+        indexes = find_all_substrings(indexHTML, staticRef)  # find all static urls
         staticIndex += indexes
     staticIndex.pop(0)  # remove base reference
     # print(staticIndex)
@@ -39,6 +39,7 @@ def fixIndexHTMLdoc():
             else:
                 # fix src tags
                 indexHTML = indexHTML[0:index + 5 + offset] + "?" + indexHTML[index + 5 + offset:]
+                print(indexHTML)
                 offset += 1
 
     with open(f"{os.getcwd()}/app/dist/app/index.html", "w") as main:
